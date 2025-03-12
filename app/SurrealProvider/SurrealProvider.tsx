@@ -2,21 +2,21 @@
 
 import { useContext } from 'react'
 import {
-  ClientSideSurrealProvider,
+  // ClientSideSurrealProvider,
   SurrealContext,
   type SurrealProviderProps,
 } from './ClientSideSurrealProvider'
-// import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic'
 
-// const ClientSideSurrealProvider = dynamic(
-//   () =>
-//     import('./ClientSideSurrealProvider').then(
-//       (mod) => mod.ClientSideSurrealProvider
-//     ),
-//   {
-//     ssr: false,
-//   }
-// )
+const ClientSideSurrealProvider = dynamic(
+  () =>
+    import('./ClientSideSurrealProvider').then(
+      (mod) => mod.ClientSideSurrealProvider
+    ),
+  {
+    ssr: false,
+  }
+)
 
 export const SurrealProvider: React.FC<Readonly<SurrealProviderProps>> = ({
   children,
