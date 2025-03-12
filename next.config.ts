@@ -1,7 +1,27 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  webpack: (config, { isServer }) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'node:fs': 'fs',
+      'node:path': 'path',
+      'node:util': 'util',
+      'node:stream': 'stream',
+      'node:crypto': 'crypto',
+      // Add any other node: modules the library is using
+    }
 
-export default nextConfig;
+    if (!isServer) {
+      // Don't resolve 'fs', 'net', etc. on the client
+      config.resolve.fallback = {
+        fs: false,
+        path: false,
+        crypto: false,
+      }
+    }
+    return config
+  },
+}
+
+export default nextConfig
