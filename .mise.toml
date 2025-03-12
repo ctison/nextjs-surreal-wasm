@@ -1,0 +1,8 @@
+### Override local settings in `.mise.local.toml` which is untracked by git
+
+[tools]
+node = '22'
+
+[settings]
+status.show_env = true
+status.show_tools = true
